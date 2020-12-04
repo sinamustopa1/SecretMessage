@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@500&family=Viga&display=swap" rel="stylesheet">
     
-    <title>Hello, world!</title>
+    <title>Create your Secret Message</title>
   </head>
 <body>
 
@@ -62,18 +62,31 @@
 
   <!-- text fill area -->
   <div class="container">
-      <div class="form-group">
+      <div class="form-group pesan">
         <h1>Masukkan pesan Anda !</h1>
         <form>
         <textarea class="form-control form-control-lg" id="textfill" rows="10" placeholder="Isikan pesanmu disini!"></textarea>
       </form>
       </div>
-      <a href="" class="btn btn-primary">Enkripsi</a>
+      <a href="" class="btn btn-primary">Enkripsi<span class="oi oi-key"></span></a>
       <a href="" class="btn btn-success">Dekripsi</a>
   </div>
 
   <!-- hasil enkripsi dan dekripsi -->
-
+  <div class="container">
+    <div class="form-group pesan hasilshift">
+      <h1>Shift Cipher</h1>
+      <form>
+      <textarea class="form-control form-control-lg" id="textfill" rows="10" placeholder="The secret message - Shift"></textarea>
+    </form>
+    </div>
+    <div class="form-group pesan hasilcolumnar">
+      <h1>Columnar</h1>
+      <form>
+      <textarea class="form-control form-control-lg" id="textfill" rows="10" placeholder="The secret message - Columnar"></textarea>
+    </form>
+    </div>
+  </div>
 
 
   </div>
