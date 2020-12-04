@@ -1,0 +1,91 @@
+/* Navbar */
+.navbar{
+    position: relative;
+    z-index: 1;
+}
+.navbar-brand {
+    font-family: Viga;
+    font-size: 32 px;
+}
+
+/* Desktop Version */
+@media (min-width: 992px){
+    .navbar-brand, .nav-link{
+        color: white !important;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0,7);
+    }
+    .nav-link {
+        text-transform: uppercase;
+        margin-right: 30px;
+    }
+    .jumbotron{
+        margin-top: -75px;
+    }
+}
+.nav-link:hover{
+    border-bottom: 3px solid #ffd51e;
+    padding-bottom: 3px;
+}
+
+/* jumbotron */
+.jumbotron{
+    background-image: url(img/secret_bg.jpg);
+    background-size: cover;
+    height: 640px;
+    text-align: center;
+    position: relative;
+}
+
+.jumbotron .container{
+    z-index: 1;
+    position: relative;
+}
+
+.jumbotron::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+    position: absolute;
+    bottom: 0;
+}
+
+.jumbotron .display-4{
+    color: white;
+    margin-top: 130px;
+    font-weight: 200;
+    margin-bottom: 30px;
+}
+
+.jumbotron .display-4 span{
+    font-weight: 500;
+}
+
+/* secret message */
+.secretmessage{
+    margin-top: 10px;
+}
+
+.secretmessage h3{
+    font-size: 40px;
+    font-weight: 200;
+    text-transform: uppercase;
+    margin-top: 120px;
+}
+
+.secretmessage span{
+    font-weight: 500;
+}
+
+.secretmessage p{
+    font-size: 18px;
+    color: #acacac;
+    font-weight: 200;
+    margin: 25px 0;
+}
+
+.textfill h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
