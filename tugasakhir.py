@@ -1,6 +1,11 @@
+from flask import Flask, render_template
+from datetime import datetime
 import random 
 import string
 import math 
+
+app = Flask(__name__)
+
 #enkripsi shift
 def encrypt(text,s):
    result = ""
@@ -129,23 +134,13 @@ def decrypt(msg,s):
 #        format(decryptMessage(cipher))) 
   
 # text = input("Masukkan Pesan : ")
-text = "ALFI"
-def get_random_string(length):
-    # Random string with the combination of lower and upper case
-    letters = string.ascii_letters
-    result_str = ''.join(random.choice(letters) for i in range(length))
-    return result_str  
-key = get_random_string(4)
-# key = "HACK"
-s = random.randint(0,26) 
-# s = 1
 
-print ("Plain Text : " + text)
-print ("Shift pattern : " + str(s))
-print ("KEY : " + key)
-print ("Cipher: " + encrypt(text,s))
-cipher = encryptMessage(encrypt(text,s)) 
-print("Encrypted Message: {}". format(cipher)) 
-print("Decryped Message: {}". format(decryptMessage(cipher))) 
-msg = format(decryptMessage(cipher))
-print ("Decrypt: " + decrypt(msg,s))
+
+@app.route('/')
+def index():
+  return render_template("home.html")
+
+
+
+if __name__ == '__main__':
+  app.run(debug=True)
