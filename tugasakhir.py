@@ -6,6 +6,10 @@ import math
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+  return render_template("home.html")
+  
 #enkripsi shift
 def encrypt(text,s):
    result = ""
@@ -134,11 +138,6 @@ def decrypt(msg,s):
 #        format(decryptMessage(cipher))) 
   
 # text = input("Masukkan Pesan : ")
-
-
-@app.route('/')
-def index():
-  return render_template("home.html")
 
 
 

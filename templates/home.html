@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
     
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -52,7 +52,7 @@
     <!-- information secret_message -->
     <div class="row secretmessage">
       <div class="col">
-        <img src="img/lock.jpg" alt="secretmessage" class="img-fluid">
+        <img src="{{ url_for('static',filename='img/lock.jpg') }}" alt="secretmessage" class="img-fluid">
       </div>
       <div class="col">
         <h3><span>Our Service</span></h3>
