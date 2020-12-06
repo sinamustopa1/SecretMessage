@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from datetime import datetime
 import random 
 import string
@@ -8,24 +8,26 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return render_template("home.html")
-  
+    key = get_random_string(4)
+    s = random.randint(0,26) 
+    return render_template("home.html",key=key,s=s)
+
+@app.route('/encrypt', methods=['POST'])
 #enkripsi shift
-def encrypt(text,s):
-   result = ""
-   # transverse the plain text
-   for i in range(len(text)):
-      char = text[i]
-      # Encrypt uppercase characters in plain text  
-      if (char.isupper()):
-         result += chr((ord(char) + (26-s)-65) % 26 + 65)
-      # Encrypt lowercase characters in plain text
-    #   else:
-    #      result += chr((ord(char) + s - 97) % 26 + 97)
-   return result
+def encrypt():
+    text = request.form['tex']
+    s = request.form['s'] 
+    result = ""
+    # transverse the plain text
+    for i in range(len(text)):
+        char = text[i]
+        # Encrypt uppercase characters in plain text  
+        if (char.isupper()):
+            result = result + chr((ord(char) + (26-s)-65) % 26 + 65)
+    return render_template("hasil.html",result=result)
   
 # Encryption columnar
-def encryptMessage(msg): 
+def encryptMessage(msg,key): 
     cipher = "" 
   
     # track key indices 
@@ -61,7 +63,7 @@ def encryptMessage(msg):
     return cipher 
   
 # Decryption columnar
-def decryptMessage(cipher): 
+def decryptMessage(cipher,key): 
     msg = "" 
   
     # track key indices 
@@ -114,7 +116,7 @@ def decryptMessage(cipher):
     return msg 
 
 #Decrypt shift
-def decrypt(msg,s):
+def decrypt(text,s):
    result = ""
    # transverse the plain text
    for i in range(len(text)):
@@ -126,6 +128,14 @@ def decrypt(msg,s):
     #   else:
     #      result += chr((ord(char) + s - 97) % 26 + 97)
    return result
+
+def get_random_string(length):
+    # Random string with the combination of lower and upper case
+    letters = string.ascii_letters
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    return result_str  
+
+
 
 # Driver Code 
 # msg = "Geeks for Geeks"

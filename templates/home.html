@@ -64,9 +64,10 @@
   <!-- text fill area -->
   <div class="container">
       <div class="form-group pesan">
-        <h1>Masukkan pesan Anda !</h1>
-        <form>
-        <textarea class="form-control form-control-lg" id="textfill" rows="10" placeholder="Isikan pesanmu disini!"></textarea>
+        <form action="{{ url_for('encrypt') }}" method="post">
+          <textarea class="form-control form-control-lg" id="textfill" name="tex"rows="10" placeholder="Isikan pesanmu disini!"></textarea>
+          <h1>Masukkan pesan Anda !</h1> <input name="s">{{s}}</p> 
+        <input type="submit">
       </form>
       </div>
       <a href="" class="btn btn-primary">Enkripsi<span class="oi oi-key"></span></a>
