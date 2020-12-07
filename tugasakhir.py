@@ -8,25 +8,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    key = get_random_string(4)
-    s = random.randint(0,26) 
-    return render_template("home.html",key=key,s=s)
+    return render_template("home.html")
 
-@app.route('/encrypt', methods=['POST'])
-#enkripsi shift
-def encrypt():
+@app.route('/check', methods=['POST'])
+def check():
     text = request.form['tex']
-    s = request.form['s'] 
-    result = ""
-    # transverse the plain text
-    for i in range(len(text)):
-        char = text[i]
-        # Encrypt uppercase characters in plain text  
-        if (char.isupper()):
-            result = result + chr((ord(char) + (26-s)-65) % 26 + 65)
-    return render_template("hasil.html",result=result)
-  
-# Encryption columnar
+    s = int(request.form['s']) 
+    key = request.form['key']
+    hasil = ""
+    if request.form['action'] == "Dekripsi":
+        hasil = decrypt(text,s,key) 
+        return render_template("hasil.html" , result = hasil)
+    elif request.form['action'] == "Enkripsi":
+        hasil = encrypt(text,s,key)
+        return render_template("hasil.html" , result = hasil)
+
 def encryptMessage(msg,key): 
     cipher = "" 
   
@@ -38,13 +34,9 @@ def encryptMessage(msg,key):
     key_lst = sorted(list(key)) 
   
     # calculate column of the matrix 
-    col = len(key) 
-      
-    # calculate maximum row of the matrix 
+    col = len(key)  
     row = int(math.ceil(msg_len / col)) 
   
-    # add the padding character '_' in empty 
-    # the empty cell of the matix  
     fill_null = int((row * col) - msg_len) 
     msg_lst.extend('_' * fill_null) 
   
@@ -61,9 +53,26 @@ def encryptMessage(msg,key):
         k_indx += 1
   
     return cipher 
+
+#enkripsi shift
+def encrypt(text,s,key):
+    result = ""
+    # transverse the plain text
+    for i in range(len(text)):
+        char = text[i]
+        # Encrypt uppercase characters in plain text  
+        if (char.isupper()):
+            c_idx = ord(char) - ord('A')
+            new = (c_idx + s) % 26
+            result += chr(new + ord('A'))
+    hasil = encryptMessage(result,key)
+    return hasil
+  
+# Encryption columnar
+
   
 # Decryption columnar
-def decryptMessage(cipher,key): 
+def decryptMessage(text,key): 
     msg = "" 
   
     # track key indices 
@@ -71,22 +80,15 @@ def decryptMessage(cipher,key):
   
     # track msg indices 
     msg_indx = 0
-    msg_len = float(len(cipher)) 
-    msg_lst = list(cipher) 
+    msg_len = float(len(text)) 
+    msg_lst = list(text) 
   
     # calculate column of the matrix 
     col = len(key) 
       
     # calculate maximum row of the matrix 
     row = int(math.ceil(msg_len / col)) 
-  
-    # convert key into list and sort  
-    # alphabetically so we can access  
-    # each character by its alphabetical position. 
     key_lst = sorted(list(key)) 
-  
-    # create an empty matrix to  
-    # store deciphered message 
     dec_cipher = [] 
     for _ in range(row): 
         dec_cipher += [[None] * col] 
@@ -116,40 +118,18 @@ def decryptMessage(cipher,key):
     return msg 
 
 #Decrypt shift
-def decrypt(text,s):
-   result = ""
-   # transverse the plain text
-   for i in range(len(text)):
-      char = text[i]
-      # Encrypt uppercase characters in plain text  
-      if (char.isupper()):
-         result += chr(((ord(char) - (26)-65) % 26 + 65))
-      # Encrypt lowercase characters in plain text
-    #   else:
-    #      result += chr((ord(char) + s - 97) % 26 + 97)
-   return result
-
-def get_random_string(length):
-    # Random string with the combination of lower and upper case
-    letters = string.ascii_letters
-    result_str = ''.join(random.choice(letters) for i in range(length))
-    return result_str  
-
-
-
-# Driver Code 
-# msg = "Geeks for Geeks"
-  
-# cipher = encryptMessage(msg) 
-# print("Encrypted Message: {}". 
-#                format(cipher)) 
-  
-# print("Decryped Message: {}". 
-#        format(decryptMessage(cipher))) 
-  
-# text = input("Masukkan Pesan : ")
-
-
+def decrypt(text,s,key):
+    # transverse the plain text
+    hasildekrip = format(decryptMessage(text,key))
+    result = ""
+    for i in range(len(hasildekrip)):
+        char = hasildekrip[i]
+        # Encrypt uppercase characters in plain text  
+        if (char.isupper()):
+            c_i = ord(char) - ord('A')
+            c_post = (c_i - s) % 26 + ord('A')
+            result += chr(c_post)
+    return result
 
 if __name__ == '__main__':
   app.run(debug=True)
