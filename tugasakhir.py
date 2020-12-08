@@ -28,6 +28,7 @@ def check():
         hasil = encrypt(text,s,key)
         return render_template("hasil_enkripsi.html" , result = hasil)
 
+#enkripsi columnar
 def encryptMessage(msg,key): 
     cipher = "" 
   
@@ -41,7 +42,8 @@ def encryptMessage(msg,key):
     # calculate column of the matrix 
     col = len(key)  
     row = int(math.ceil(msg_len / col)) 
-  
+    
+    #fill null
     fill_null = int((row * col) - msg_len) 
     msg_lst.extend('_' * fill_null) 
   
