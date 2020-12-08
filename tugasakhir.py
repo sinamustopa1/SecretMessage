@@ -10,18 +10,23 @@ app = Flask(__name__)
 def index():
     return render_template("home.html")
 
+@app.route('/')
+def back():
+    if request.form['action'] == "Back":
+        return render_template("home.html")
+
 @app.route('/check', methods=['POST'])
 def check():
     text = request.form['tex']
     s = int(request.form['s']) 
     key = request.form['key']
     hasil = ""
-    if request.form['action'] == "Dekripsi":
+    if request.form['action'] == "Decryption":
         hasil = decrypt(text,s,key) 
-        return render_template("hasil.html" , result = hasil)
-    elif request.form['action'] == "Enkripsi":
+        return render_template("hasil_dekripsi.html" , result = hasil)
+    elif request.form['action'] == "Encryption":
         hasil = encrypt(text,s,key)
-        return render_template("hasil.html" , result = hasil)
+        return render_template("hasil_enkripsi.html" , result = hasil)
 
 def encryptMessage(msg,key): 
     cipher = "" 

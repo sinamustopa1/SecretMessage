@@ -16,7 +16,6 @@
     
     <title>Create your Secret Message</title>
   </head>
-  hell
 <body>
 
   <!-- navbar -->
@@ -29,9 +28,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
         <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Features</a>
-        <a class="nav-item nav-link" href="#">Pricing</a>
-        <a class="nav-item nav-link" href="#">About</a>
+        <a class="nav-item nav-link" href="#">Become</a>
+        <a class="nav-item nav-link" href="#">Secret</a>
+        <a class="nav-item nav-link" href="#">Mode</a>
       </div>
     </div>
   </div>
@@ -41,7 +40,7 @@
   <!-- jumbotron -->
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">Ubah <span>Pesan Singkat</span> mu, menjadi <span>Rahasia</span> !</h1>
+      <h1 class="display-4">Change your <span>Short Message</span> to <span>Secret Mode</span></h1>
       <a href="" class="btn btn-primary">Load more</a>
     </div>
   </div>
@@ -52,11 +51,11 @@
     <!-- information secret_message -->
     <div class="row secretmessage">
       <div class="col">
-        <img src="{{ url_for('static',filename='img/lock.jpg') }}" alt="secretmessage" class="img-fluid">
+        <img src="{{ url_for('static',filename='img/assets1.png') }}" alt="secretmessage" class="img-fluid">
       </div>
       <div class="col">
         <h3><span>Our Service</span></h3>
-        <p>Pesan kamu akan diubah menggunakan <span>Shift Cipher</span> dan <span>Columnar</span></p>
+        <p>Your message will be converted using <span>Shift Cipher</span> and <span>Columnar</span></p>
       </div>
     </div>
   </div>
@@ -64,36 +63,16 @@
   <!-- text fill area -->
   <div class="container">
       <div class="form-group pesan">
+        <h1>Input your Message !</h1></br>
         <form action="{{ url_for('check') }}" method="post">
-          <textarea class="form-control form-control-lg" id="textfill" name="tex"rows="10" placeholder="Isikan pesanmu disini!"></textarea>
-          <h1>Masukkan pesan Anda !</h1> 
-          <input name="s"></p> 
-          <input name="key"></p> 
-        <input type="submit" name="action" id='text' value="Dekripsi">
-        <input type ="submit" name="action" id='text' value="Enkripsi">
+          <textarea class="form-control form-control-lg" id="textfill" name="tex"rows="10" placeholder="Type your Message"></textarea></br></br>
+          <input name="s" class="form-control form-control-lg" rows="10" placeholder="Input your key number (0-26)"></p></br>
+          <input name="key" class="form-control form-control-lg" rows="10" placeholder="Input your key with 4 Alphabet"></p></br>
+          <input type ="submit" name="action" id='text' value="Encryption" class="btn btn-success">
+          <input type="submit" name="action" id='text' value="Decryption" class="btn btn-primary">
       </form>
-      </div>
-      <a href="" class="btn btn-primary">Enkripsi<span class="oi oi-key"></span></a>
-      <a href="" class="btn btn-success">Dekripsi</a>
+      </div></br></br>
   </div>
-
-  <!-- hasil enkripsi dan dekripsi -->
-  <div class="container">
-    <div class="form-group pesan hasilshift">
-      <h1>Shift Cipher</h1>
-      <form>
-      <textarea class="form-control form-control-lg" id="textfill" rows="10" placeholder="The secret message - Shift"></textarea>
-    </form>
-    </div>
-    <div class="form-group pesan hasilcolumnar">
-      <h1>Columnar</h1>
-      <form>
-      <textarea class="form-control form-control-lg" id="textfill" rows="10" placeholder="The secret message - Columnar"></textarea>
-    </form>
-    </div>
-  </div>
-
-
   </div>
 
     <!-- Optional JavaScript -->
